@@ -1,7 +1,7 @@
 import { AbstractServiceProvider } from "@klavier/core";
-import { ConfigConst, IConfigLoader } from "@klavier/config";
-import * as process from "process";
-import * as path from "path";
+import { ConfigConst, type IConfigLoader } from "@klavier/config";
+import { env } from "process";
+import { resolve } from "path";
 
 export class ApplicationServiceProvider extends AbstractServiceProvider {
 	public register(): void {
@@ -9,9 +9,15 @@ export class ApplicationServiceProvider extends AbstractServiceProvider {
 	}
 
 	public boot(): void {
+		this.configureApplicationEnvironmentFile();
+	}
+
+	private configureApplicationEnvironmentFile(): void {
 		const configLoader: IConfigLoader = this.container.get(ConfigConst.IConfigLoaderToken);
 
-		const configFilePath = path.resolve(<string>process.env["NODE_PATH"], "");
-		console.log(configLoader, configFilePath);
+		const nodePath: string = env["NODE_PATH"] as string;
+		const configFilePath: string = resolve(nodePath, `env.${env["NODE_ENV"]}.yaml`);
+
+		configLoader.loadConfig(configFilePath);
 	}
 }

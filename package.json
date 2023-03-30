@@ -1,7 +1,7 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
+  "name": "node-boilerplate",
+  "version": "0.0.14",
+  "description": "Boilerplate code for NodeJS apps",
   "main": "index.js",
   "scripts": {
     "build": "npm run compile && npm run path:resolve",
@@ -12,13 +12,12 @@
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
-  "keywords": [],
-  "author": "",
+  "author": "Muhammad Waqar",
   "license": "ISC",
   "dependencies": {
-    "@klavier/config": "^0.0.9",
-    "@klavier/core": "^0.0.9",
-    "@klavier/express-adapter": "^0.0.9"
+    "@klavier/config": "^0.0.14",
+    "@klavier/core": "^0.0.14",
+    "@klavier/express-adapter": "^0.0.14"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.57.0",
